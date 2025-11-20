@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký | FashionClip</title>
+
+  <link rel="stylesheet" href="/src/css/auth.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+  <a href="/" class="back-home">
+    <i class="ri-arrow-left-line"></i> Trang chủ
+  </a>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+
+      <div class="auth-header">
+        <i class="ri-star-smile-line"></i>
+        <h2>Tạo tài khoản</h2>
+      </div>
+
+      <form id="registerForm" novalidate>
+
+        <!-- USERNAME -->
+        <div class="form-group">
+          <input type="text" id="regUsername" placeholder=" " required />
+          <label for="regUsername">Tên đăng nhập</label>
+          <div class="error-text" id="regUserError"></div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <input type="text" id="regEmail" placeholder=" " required autocomplete="off" />
+          <label for="regEmail">Email</label>
+          <div class="error-text" id="regEmailError"></div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group password-wrapper">
+          <input type="password" id="regPassword" placeholder=" " required />
+          <label for="regPassword">Mật khẩu</label>
+          <i class="ri-eye-off-line" id="toggleRegPass"></i>
+
+          <!-- Strength Meter -->
+          <div class="strength-meter">
+            <div class="strength-bar" id="strengthBar"></div>
+          </div>
+
+          <div class="error-text" id="regPassError"></div>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="form-group password-wrapper">
+          <input type="password" id="regConfirmPassword" placeholder=" " required />
+          <label for="regConfirmPassword">Xác nhận mật khẩu</label>
+          <i class="ri-eye-off-line" id="toggleRegConfirm"></i>
+
+          <div class="error-text" id="regConfirmError"></div>
+        </div>
+
+        <button type="submit" class="auth-btn">Đăng ký</button>
+      </form>
+
+      <div class="auth-footer">
+        Đã có tài khoản?
+        <a href="/pages/login.html">Đăng nhập</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="/src/js/app.js"></script>
+</body>
+</html>

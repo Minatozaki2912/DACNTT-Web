@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html langLibrary="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FashionClip - Trang chủ</title> <!-- thay tiêu đề cho phù hợp -->
+  <title>FashionClip - Trang chủ</title>
 
-  <!-- Chỉ để 1 link font duy nhất -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&subset=vietnamese&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
-  
-  <!-- Trang chủ & search -->
   <link rel="stylesheet" href="/src/css/style.css" />
-  
-  <!-- Trang login/register thì dùng auth.css -->
-  <!-- <link rel="stylesheet" href="/src/css/auth.css" /> -->
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
 
   <nav>
@@ -25,8 +18,8 @@
     <ul>
       <li><a href="/">Trang chủ</a></li>
       <li><a href="/src/pages/search.html">Tìm kiếm</a></li>
-      <li><a href="/src/pages/login.html" id="loginLink">Đăng nhập</a></li>
-      <li><a href="/src/pages/register.html" id="registerLink">Đăng ký</a></li>
+      <li><a href="/pages/login.html" id="loginLink">Đăng nhập</a></li>
+      <li><a href="/pages/register.html" id="registerLink">Đăng ký</a></li>
       <li><button id="logoutBtn" style="display:none;">Đăng xuất</button></li>
     </ul>
   </nav>
@@ -47,7 +40,7 @@
     <div class="grid" id="productGrid"></div>
   </div>
 
-  <footer>© 2025 FashionClip | Made with 💜 by Hoàng Vương</footer>
+  <footer>© 2025 FashionClip | Made with by Hoàng Vương</footer>
 
   <script type="module" src="/src/js/app.js"></script>
 </body>

@@ -5,23 +5,50 @@ const User = require("../models/User");
 // 🔑 Đăng ký
 exports.register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
 
-    // Kiểm tra thông tin
-    if (!username || !email || !password)
-      return res.status(400).json({ message: "Thiếu thông tin" });
+    // Validation cơ bản
+    if (!username || !email || !password || !confirmPassword) {
+      return res.status(400).json({ message: "Vui lòng điền đầy đủ thông tin" });
+    }
 
-    const existingUser = await User.findOne({ username });
-    if (existingUser)
-      return res.status(400).json({ message: "Tên đăng nhập đã tồn tại" });
+    if (username.length < 3 || username.length > 20) {
+      return res.status(400).json({ message: "Tên đăng nhập từ 3-20 ký tự"});
+    }
+
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      return res.status(400).json({ message: "Tên đăng nhập chỉ chứa chữ, số và gạch dưới" });
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return res.status(400).json({ message: "Email không hợp lệ" });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ message: "Mật khẩu phải ít nhất 6 ký tự" });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Mật khẩu xác nhận không khớp" });
+    }
+
+    // Kiểm tra tồn tại
+    const existing = await User.findOne({ $or: [{ username }, { email }] });
+    if (existing) {
+      const msg = existing.username === username 
+        ? "Tên đăng nhập đã tồn tại" 
+        : "Email đã được sử dụng";
+      return res.status(400).json({ message: msg });
+    }
 
     const hashed = bcrypt.hashSync(password, 10);
     const user = new User({ username, email, password: hashed });
     await user.save();
 
-    res.status(201).json({ message: "Đăng ký thành công" });
+    res.status(201).json({ message: "Đăng ký thành công! Hãy đăng nhập nhé 🎉" });
   } catch (err) {
-    res.status(500).json({ message: "Lỗi server", error: err.message });
+    console.error(err);
+    res.status(500).json({ message: "Lỗi server" });
   }
 };
 
@@ -30,41 +57,33 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    if (!username || !password) {
+      return res.status(400).json({ message: "Vui lòng nhập đầy đủ" });
+    }
+
     const user = await User.findOne({ username });
-    if (!user)
-      return res.status(404).json({ message: "Không tìm thấy tài khoản" });
+    if (!user) {
+      return res.status(404).json({ message: "Tài khoản không tồn tại" });
+    }
 
     const match = bcrypt.compareSync(password, user.password);
-    if (!match)
+    if (!match) {
       return res.status(401).json({ message: "Sai mật khẩu" });
+    }
 
-    // Tạo JWT token
     const token = jwt.sign(
       { id: user._id, username: user.username },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      process.env.JWT_SECRET || "fallback_secret_key_2025",
+      { expiresIn: "7d" }
     );
 
-    res.status(200).json({
-      message: "Đăng nhập thành công",
+    res.json({
+      message: "Đăng nhập thành công!",
       token,
       user: { id: user._id, username: user.username, email: user.email }
     });
   } catch (err) {
-    res.status(500).json({ message: "Lỗi server", error: err.message });
-  }
-};
-
-// 👤 Xác thực người dùng (middleware)
-exports.verifyToken = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "Thiếu token" });
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(401).json({ message: "Token không hợp lệ" });
+    console.error(err);
+    res.status(500).json({ message: "Lỗi server" });
   }
 };
