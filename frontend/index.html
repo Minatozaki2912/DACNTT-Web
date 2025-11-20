@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>👗 FashionClip - Thời trang thông minh</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body { background: #f9fafb; color: #333; }
+
+    /* ---------- NAVBAR ---------- */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 60px; background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); z-index: 10;
+    }
+
+    nav h1 { font-size: 22px; font-weight: 700; color: #00897b; cursor: pointer; }
+    nav h1 span { color: #333; }
+
+    nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
+    nav ul li a, nav ul li button {
+      text-decoration: none; color: #333; font-weight: 500;
+      background: none; border: none; cursor: pointer; transition: 0.3s;
+    }
+    nav ul li a:hover, nav ul li button:hover { color: #00897b; }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      height: 90vh;
+      background: linear-gradient(to bottom right, rgba(0,137,123,0.85), rgba(0,188,212,0.85)),
+                  url('https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: white; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 0 20px; margin-top: 70px;
+    }
+
+    .hero h2 { font-size: 48px; font-weight: 700; margin-bottom: 15px; }
+    .hero p { font-size: 18px; max-width: 700px; opacity: 0.9; }
+
+    .hero .btn-group { margin-top: 25px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .hero button {
+      padding: 12px 32px; font-size: 16px; border: none; border-radius: 25px;
+      background: white; color: #00897b; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+    }
+    .hero button:hover { background: #00897b; color: white; transform: translateY(-2px); }
+
+    /* ---------- PRODUCTS ---------- */
+    .container { padding: 70px 80px; background: #fff; text-align: center; }
+
+    .container h2 {
+      font-size: 32px; margin-bottom: 40px; color: #222;
+      position: relative; display: inline-block;
+    }
+    .container h2::after {
+      content: ""; width: 60%; height: 3px; background: #00bfa5;
+      display: block; margin: 10px auto 0; border-radius: 10px;
+    }
+
+    .product-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: #fff; border-radius: 15px; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s;
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+    .product-card img { width: 100%; height: 300px; object-fit: cover; }
+    .product-card h3 { font-size: 18px; margin: 10px 0 5px; font-weight: 600; }
+    .product-card p { font-size: 14px; color: #777; }
+
+    .product-card button {
+      margin: 15px 0 20px; padding: 8px 18px; border: none;
+      border-radius: 20px; background: #00bfa5; color: white; cursor: pointer; transition: 0.3s;
+    }
+    .product-card button:hover { background: #00796b; }
+
+    footer { text-align: center; padding: 25px; color: #777; font-size: 14px; background: #f4f4f4; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade { animation: fadeInUp 0.6s ease forwards; }
+  </style>
+</head>
+
+<body>
+  <!-- ---------- NAV ---------- -->
+  <nav>
+    <h1 onclick="location='index.html'">Fashion<span>Clip</span></h1>
+    <ul>
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="search.html">Tìm kiếm</a></li>
+      <li><a href="login.html" id="loginLink">Đăng nhập</a></li>
+      <li><a href="register.html" id="registerLink">Đăng ký</a></li>
+      <li><button id="logoutBtn" style="display:none;">Đăng xuất</button></li>
+    </ul>
+  </nav>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero">
+    <h2>Thời trang thông minh – Gợi ý cá nhân hóa</h2>
+    <p>Khám phá sản phẩm phù hợp với phong cách của bạn, được đề xuất bởi AI FashionClip 🌟</p>
+    <div class="btn-group">
+      <button onclick="scrollToProducts()">Xem sản phẩm nổi bật</button>
+      <button onclick="window.location.href='search.html'"><i class="ri-search-line"></i> Tìm kiếm sản phẩm</button>
+    </div>
+  </section>
+
+  <!-- ---------- FEATURED PRODUCTS ---------- -->
+  <div class="container" id="products">
+    <h2>Sản phẩm nổi bật</h2>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+
+  <footer>© 2025 FashionClip | Designed by Hoàng Vương 💚</footer>
+
+  <script>
+    const token = localStorage.getItem("token");
+    const loginLink = document.getElementById("loginLink");
+    const registerLink = document.getElementById("registerLink");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // 🟢 Hiển thị nút phù hợp theo trạng thái đăng nhập
+    if (token) {
+      loginLink.style.display = "none";
+      registerLink.style.display = "none";
+      logoutBtn.style.display = "inline";
+    }
+
+    // 🧭 Đăng xuất chuyên nghiệp
+    logoutBtn.addEventListener("click", () => {
+      Swal.fire({
+        title: "Bạn có chắc muốn đăng xuất?",
+        text: "Phiên đăng nhập sẽ kết thúc.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Đăng xuất",
+        cancelButtonText: "Hủy",
+        confirmButtonColor: "#00a896",
+        cancelButtonColor: "#d33"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          Swal.fire({
+            icon: "success",
+            title: "Đăng xuất thành công!",
+            text: "Hẹn gặp lại bạn 👋",
+            timer: 1500,
+            showConfirmButton: false
+          });
+          setTimeout(() => (window.location.href = "login.html"), 1500);
+        }
+      });
+    });
+
+    // 🔽 Cuộn đến phần sản phẩm
+    function scrollToProducts() {
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // 🛍️ Tải danh sách sản phẩm nổi bật
+    async function loadProducts() {
+      try {
+        const res = await fetch("http://localhost:3000/api/products");
+        const products = await res.json();
+        const grid = document.getElementById("productGrid");
+        grid.innerHTML = "";
+
+        products.forEach((p, index) => {
+          const card = document.createElement("div");
+          card.className = "product-card fade";
+          card.style.animationDelay = `${index * 0.1}s`;
+          card.innerHTML = `
+            <img src="${p.image || 'https://via.placeholder.com/250'}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>${p.category || 'Danh mục'}</p>
+            <p><strong>${p.price ? p.price.toLocaleString('vi-VN') + '₫' : ''}</strong></p>
+            <button onclick="showAIMessage()">Gợi ý tương tự</button>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (err) {
+        console.error("Lỗi khi tải sản phẩm:", err);
+      }
+    }
+
+    // 🚧 Placeholder cho tính năng AI
+    function showAIMessage() {
+      Swal.fire({
+        icon: "info",
+        title: "👗 Gợi ý AI đang phát triển",
+        text: "Tính năng này sẽ sớm ra mắt!",
+        confirmButtonColor: "#00a896"
+      });
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>

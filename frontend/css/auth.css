@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #00a896, #028090);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* === FORM CONTAINER === */
+.auth-box {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 45px 55px;
+  width: 380px;
+  color: white;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-box h2 {
+  font-size: 23px;
+  margin-bottom: 32px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* === INPUT GROUP === */
+.input-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.25s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-group input::placeholder {
+  color: transparent;
+}
+
+.input-group label {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  pointer-events: none;
+  transition: 0.3s ease;
+  background: transparent;
+}
+
+/* === FLOATING LABEL EFFECT === */
+.input-group input:focus {
+  border-color: #56e39f;
+  box-shadow: 0 0 8px rgba(86, 227, 159, 0.6);
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 12px;
+  font-size: 13px;
+  color: #56e39f;
+  background: rgba(0, 168, 150, 0.6);
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+/* === BUTTON === */
+button {
+  width: 100%;
+  height: 46px;
+  background: #56e39f;
+  border: none;
+  border-radius: 10px;
+  color: #222;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #72f0b4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* === TEXT LINK === */
+.auth-box p {
+  margin-top: 22px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-box a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.auth-box a:hover {
+  color: #56e39f;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 420px) {
+  .auth-box {
+    width: 90%;
+    padding: 35px 30px;
+  }
+}

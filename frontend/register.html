@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký - FashionClip</title>
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth-box">
+    <h2>🧾 Đăng ký tài khoản</h2>
+    <form id="registerForm">
+      <div class="input-group">
+        <input type="text" id="username" placeholder=" " required>
+        <label for="username">Tên đăng nhập</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">Email</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" placeholder=" " required>
+        <label for="password">Mật khẩu</label>
+      </div>
+
+      <button type="submit">Đăng ký</button>
+    </form>
+    <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+  </div>
+
+  <!-- ✅ SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.status === 201) {
+        Swal.fire({
+          icon: "success",
+          title: "Đăng ký thành công!",
+          text: "Bạn có thể đăng nhập ngay 🎉",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTimeout(() => window.location.href = "login.html", 1500);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Đăng ký thất bại!",
+          text: data.message || "Vui lòng kiểm tra lại thông tin.",
+          confirmButtonColor: "#d33"
+        });
+      }
+    });
+  </script>
+</body>
+</html>
