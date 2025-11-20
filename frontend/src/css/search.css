@@ -1,0 +1,150 @@
+/* ==================== SEARCH PAGE RIÊNG BIỆT – KHÔNG ẢNH HƯỞNG TRANG CHỦ ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+/* Navbar vẫn dùng chung từ style.css – không cần viết lại */
+
+/* Hero tìm kiếm */
+.search-hero {
+  text-align: center;
+  padding: 160px 20px 60px;
+}
+
+.search-hero h2 {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 50px;
+}
+
+/* Thanh tìm kiếm + upload */
+.search-bar {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 340px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 20px 70px 20px 28px;
+  border: none;
+  border-radius: 60px;
+  background: white;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2);
+  transform: translateY(-2px);
+}
+
+.search-icon-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.search-icon-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.upload-btn {
+  padding: 20px 36px;
+  background: white;
+  border-radius: 60px;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.upload-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+}
+
+/* Bộ lọc */
+.filters {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters select,
+.filters input {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 50px;
+  background: white;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+  font-size: 15px;
+  outline: none;
+  min-width: 180px;
+}
+
+/* Grid kết quả */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 100px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .search-hero { padding-top: 180px; }
+  .search-hero h2 { font-size: 38px; }
+  .search-bar, .filters { flex-direction: column; }
+  .search-input-wrapper, .upload-btn, .filters select, .filters input { 
+    width: 100%; 
+    min-width: unset;
+  }
+}
