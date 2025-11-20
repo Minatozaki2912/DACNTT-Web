@@ -188,10 +188,78 @@ nav ul li button:hover {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 30px;
 }
 
+/* Card dùng trên trang chủ (JS tạo div.product-card) */
+.product-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  padding: 16px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+/* GIỚI HẠN KÍCH THƯỚC ẢNH  */
+.product-card img {
+  width: 100%;
+  max-width: 240px;       /* không cho ảnh rộng quá */
+  height: 240px;          /* hoặc 220px nếu muốn thấp hơn */
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+/* Text & nút trong card */
+.product-card h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #1e293b;
+  text-align: center;
+}
+
+.product-card p {
+  font-size: 14px;
+  margin: 2px 0;
+  text-align: center;
+  color: #64748b;
+}
+
+.product-card p b {
+  font-size: 16px;
+  color: #ec4899;
+}
+
+.product-card button {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1.5px solid #6366f1;
+  background: transparent;
+  color: #6366f1;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.product-card button:hover {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+/* Giữ lại .card cũ nếu sau này bạn còn dùng chỗ khác */
 .card {
   background: white;
   border-radius: 20px;
@@ -238,6 +306,7 @@ nav ul li button:hover {
   font-weight: 600;
   cursor: pointer;
 }
+
 
 /* ====================== RESPONSIVE ====================== */
 @media (max-width: 768px) {
