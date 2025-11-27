@@ -35,7 +35,9 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
 );
 */
-
+// 3. USER ROUTES (Quản lý người dùng)
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
 // ==================== START SERVER ====================
 const PORT = process.env.PORT || 3000;
 

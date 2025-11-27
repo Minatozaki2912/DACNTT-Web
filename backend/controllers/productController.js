@@ -73,3 +73,41 @@ exports.categories = async (req, res) => {
     res.status(500).json({ message: "Lỗi khi lấy danh mục" });
   }
 };
+// Thêm sản phẩm mới (Create)
+exports.createProduct = async (req, res) => {
+  try {
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi tạo sản phẩm" });
+  }
+};
+
+// Cập nhật sản phẩm (Update - ví dụ đổi giá, cập nhật kho)
+exports.updateProduct = async (req, res) => {
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi cập nhật" });
+  }
+};
+
+// Xóa sản phẩm
+exports.deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(id);
+
+    // Kiểm tra nếu không tìm thấy sản phẩm để xóa
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Không tìm thấy sản phẩm này" });
+    }
+
+    res.json({ message: "Đã xóa sản phẩm thành công" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Lỗi Server khi xóa" });
+  }
+};

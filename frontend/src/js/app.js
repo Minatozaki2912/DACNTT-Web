@@ -173,6 +173,8 @@ function initLoginForm() {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.user.username);
+        // [THÊM MỚI] Lưu role vào localStorage để dùng sau này
+        localStorage.setItem("role", data.user.role); 
 
         Swal.fire({
           icon: "success",
@@ -181,7 +183,17 @@ function initLoginForm() {
           timer: 1200
         });
 
-        setTimeout(() => (window.location.href = "/"), 1200);
+        // [SỬA LẠI] Logic chuyển hướng dựa trên quyền
+        setTimeout(() => {
+          if (data.user.role === "admin") {
+            // Nếu là admin -> Chuyển sang trang quản trị (bạn cần tạo file này sau)
+            window.location.href = "/src/pages/admin/dashboard.html"; 
+          } else {
+            // Nếu là user thường -> Về trang chủ
+            window.location.href = "/";
+          }
+        }, 1200);
+
       } else {
         // Backend trả message kiểu: "Sai mật khẩu" / "Tài khoản không tồn tại"
         Swal.fire("Lỗi", data.message || "Sai tài khoản hoặc mật khẩu", "error");
@@ -307,25 +319,39 @@ function initRegisterForm() {
 // ================================
 // NAVBAR + LOGOUT
 // ================================
+// ================================
+// TRONG HÀM: initNavbarAuth
+// ================================
 function initNavbarAuth() {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role"); // [THÊM] Lấy role ra
+  
   const loginLink = qs("loginLink");
   const registerLink = qs("registerLink");
   const logoutBtn = qs("logoutBtn");
+  const adminLink = qs("adminLink"); // [THÊM] Nút link đến trang admin
 
   if (token) {
     if (loginLink) loginLink.style.display = "none";
     if (registerLink) registerLink.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+    // [THÊM] Nếu là admin thì hiện nút Admin Dashboard
+    if (role === "admin" && adminLink) {
+      adminLink.style.display = "inline-block"; 
+    }
   } else {
     if (loginLink) loginLink.style.display = "inline-block";
     if (registerLink) registerLink.style.display = "inline-block";
     if (logoutBtn) logoutBtn.style.display = "none";
+    
+    // [THÊM] Ẩn nút admin nếu chưa đăng nhập
+    if (adminLink) adminLink.style.display = "none";
   }
 
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-      localStorage.clear();
+      localStorage.clear(); // Xóa sạch token, username, role
       window.location.href = "/";
     });
   }

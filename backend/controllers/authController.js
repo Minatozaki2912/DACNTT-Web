@@ -65,14 +65,23 @@ exports.login = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "Tài khoản không tồn tại" });
     }
-
+    if (user.isBlocked) {
+      return res.status(403).json({ 
+        message: "Tài khoản của bạn đã bị khóa! Vui lòng liên hệ Admin." 
+      });
+    }
     const match = bcrypt.compareSync(password, user.password);
     if (!match) {
       return res.status(401).json({ message: "Sai mật khẩu" });
     }
 
+    // --- SỬA CHỖ NÀY ---
     const token = jwt.sign(
-      { id: user._id, username: user.username },
+      { 
+        id: user._id, 
+        username: user.username, 
+        role: user.role // <--- THÊM: Lưu quyền vào token
+      },
       process.env.JWT_SECRET || "fallback_secret_key_2025",
       { expiresIn: "7d" }
     );
@@ -80,10 +89,43 @@ exports.login = async (req, res) => {
     res.json({
       message: "Đăng nhập thành công!",
       token,
-      user: { id: user._id, username: user.username, email: user.email }
+      user: { 
+        id: user._id, 
+        username: user.username, 
+        email: user.email, 
+        role: user.role // <--- THÊM: Gửi quyền về cho Frontend xử lý chuyển trang
+      }
     });
+    // -------------------
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Lỗi server" });
+  }
+};
+// 👥 Lấy danh sách tất cả Users (Chỉ Admin)
+exports.getAllUsers = async (req, res) => {
+  try {
+    // Lấy tất cả user nhưng trừ trường password ra
+    const users = await User.find().sort({ createdAt: -1 }).select("-password");
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi lấy danh sách user" });
+  }
+};
+
+// 🔒 Khóa / Mở khóa tài khoản
+exports.toggleBlockUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User không tồn tại" });
+
+    // Đảo ngược trạng thái (đang khóa -> mở, đang mở -> khóa)
+    user.isBlocked = !user.isBlocked;
+    await user.save();
+
+    res.json({ message: "Cập nhật thành công", isBlocked: user.isBlocked });
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi cập nhật user" });
   }
 };
