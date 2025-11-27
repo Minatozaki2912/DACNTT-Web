@@ -293,7 +293,7 @@ function initRegisterForm() {
           confirmButtonText: "Đăng nhập ngay",
           confirmButtonColor: "#6366f1"
         }).then(() => {
-          window.location.href = "/src/pages/login.html";
+          window.location.href = "/pages/login.html";
         });
       } else {
         Swal.fire("Lỗi", data.message || "Đăng ký thất bại", "error");
