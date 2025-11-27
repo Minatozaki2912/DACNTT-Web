@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "6927b2eba234ad17cc0ac1c1"
+  },
+  "username": "minatozaki",
+  "email": "vvvv@gmail.com",
+  "password": "$2b$10$A36IdBtn10S5JXBy5u44vOCS1z22dyJOTngn4NT4rV3hqmLdsU5vi",
+  "role": "user",
+  "createdAt": {
+    "$date": "2025-11-27T02:09:47.540Z"
+  },
+  "__v": 0,
+  "address": "",
+  "isBlocked": true,
+  "phone": ""
+},
+{
+  "_id": {
+    "$oid": "6927b321a234ad17cc0ac1c7"
+  },
+  "username": "vuong1234",
+  "email": "vuonghades2004@gmail.com",
+  "password": "$2b$10$gkEk1PpmXzB2eml5ccjfr.rTuxWkS..tLFckUYyT2n3P2KYYttUpW",
+  "role": "admin",
+  "createdAt": {
+    "$date": "2025-11-27T02:10:41.306Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6927bc737d5f26506af14582"
+  },
+  "username": "minatozaki1",
+  "email": "ggg@gmail.com",
+  "password": "$2b$10$ji0Uxy/..kl5EzYunUQf1ed8gw5RUYJ9BVORlvOwPmNFsdnR64eUO",
+  "role": "user",
+  "phone": "",
+  "address": "",
+  "isBlocked": true,
+  "createdAt": {
+    "$date": "2025-11-27T02:50:27.463Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6927dc653e7443fee436f280"
+  },
+  "username": "vuong123",
+  "email": "ddd@gmail.com",
+  "password": "$2b$10$/MPBcWzmF9nZedndPFP0WupM96ruYoWvW04t3OIy9/325yiihKCjm",
+  "role": "user",
+  "phone": "0329674137",
+  "address": "19 Nguyễn Hữu Thọ, Tân Hưng, Hồ Chí Minh",
+  "isBlocked": false,
+  "createdAt": {
+    "$date": "2025-11-27T05:06:45.360Z"
+  },
+  "__v": 0,
+  "avatar": "https://i.imgur.com/6VBx3io.png",
+  "fullName": "Lê Nguyễn Hoàng Vương"
+}]

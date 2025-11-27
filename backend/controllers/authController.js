@@ -129,3 +129,32 @@ exports.toggleBlockUser = async (req, res) => {
     res.status(500).json({ message: "Lỗi cập nhật user" });
   }
 };
+// 👤 Lấy thông tin cá nhân (Profile)
+exports.getProfile = async (req, res) => {
+  try {
+    // req.user.id có được từ middleware verifyToken
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) return res.status(404).json({ message: "Không tìm thấy user" });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
+// 📝 Cập nhật thông tin cá nhân
+exports.updateProfile = async (req, res) => {
+  try {
+    const { fullName, phone, address, avatar } = req.body;
+    
+    // Chỉ cho phép cập nhật các trường này (tránh user tự hack role)
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      { fullName, phone, address, avatar },
+      { new: true } // Trả về data mới sau khi update
+    ).select("-password");
+
+    res.json({ message: "Cập nhật thành công!", user: updatedUser });
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi cập nhật" });
+  }
+};

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ sơ cá nhân | FashionClip</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&subset=vietnamese&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+  
+  <link rel="stylesheet" href="/src/css/style.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    /* --- CSS RIÊNG CHO LAYOUT PROFILE --- */
+    /* (Chỉ chỉnh bố cục card, còn màu sắc/font lấy từ style.css) */
+
+    .profile-wrapper {
+      padding-top: 140px; /* Né Navbar đang fixed */
+      padding-bottom: 60px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Background đã có trong body của style.css nên không cần set lại */
+    }
+
+    /* Card Profile: Style giống các khối trong trang chủ */
+    .profile-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 30px; /* Bo góc lớn giống Navbar */
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      margin: 0 20px;
+    }
+
+    /* CỘT TRÁI */
+    .left-col {
+      background: linear-gradient(180deg, rgba(255, 240, 247, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+      padding: 50px 30px;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar-img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25); /* Bóng màu hồng */
+      margin-bottom: 20px;
+    }
+
+    .role-badge {
+      margin-top: 12px;
+      background: linear-gradient(135deg, #6366f1, #ec4899); /* Gradient chủ đạo */
+      color: white;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+    }
+
+    /* CỘT PHẢI */
+    .right-col {
+      padding: 50px;
+    }
+
+    .section-header h3 {
+      font-weight: 800; /* Font đậm chuẩn trang chủ */
+      color: #1e293b;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Input Fields: Bo tròn hơn để giống Search Bar */
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 8px;
+      padding-left: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 20px; /* Bo tròn kiểu hiện đại */
+      border: 1px solid #e2e8f0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      background: #f8fafc;
+      color: #334155;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #ec4899;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
+      transform: translateY(-2px);
+    }
+
+    input[readonly] {
+      background: #f1f5f9;
+      color: #94a3b8;
+      cursor: default;
+    }
+
+    /* Nút Lưu: Đồng bộ với .btn-primary */
+    .btn-save {
+      width: 100%;
+      padding: 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 50px; /* Pill shape */
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-save:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .profile-card {
+        grid-template-columns: 1fr;
+        border-radius: 0;
+        margin: 0;
+        box-shadow: none;
+        background: transparent;
+      }
+      .profile-wrapper {
+        padding-top: 100px;
+      }
+      .left-col {
+        background: white;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      }
+      .right-col {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1 onclick="location.href='/'">Fashion<span>Clip</span></h1>
+    
+    <ul>
+      <li><a href="/">Trang chủ</a></li>
+      
+      <li><a href="/src/pages/search.html">Tìm kiếm</a></li>
+      
+      <li><button id="logoutBtn" style="color: #ef4444;">Đăng xuất</button></li>
+
+      <li id="profileNavItem">
+        <a href="/src/pages/profile.html" class="nav-avatar-link" style="border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99,102,241,0.2);">
+          <img id="navAvatar" src="https://i.imgur.com/6VBx3io.png" alt="Profile">
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="profile-wrapper">
+    <div class="profile-card">
+      
+      <div class="left-col">
+        <div class="avatar-container">
+          <img src="https://i.imgur.com/6VBx3io.png" id="avatarDisplay" class="avatar-img">
+        </div>
+        <h4 id="nameDisplay" style="font-weight: 700; color: #1e293b; margin-bottom: 5px; font-size: 1.2rem;">Loading...</h4>
+        <p id="emailDisplay" style="color: #64748b; font-size: 0.9rem;">...</p>
+        <span id="roleDisplay" class="role-badge">MEMBER</span>
+
+        <div style="margin-top: 30px; width: 100%; text-align: left; padding: 20px; background: #f8fafc; border-radius: 15px;">
+          <small style="color: #94a3b8; font-weight: 600; font-size: 0.75rem; text-transform: uppercase;">Ngày tham gia</small>
+          <div id="dateDisplay" style="font-weight: 600; color: #334155; margin-top: 5px;">--/--/----</div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="section-header">
+          <h3>Thông tin cá nhân</h3>
+        </div>
+
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Tên đăng nhập</label>
+              <input type="text" id="inpUsername" readonly>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" id="inpEmail" readonly>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Họ và tên</label>
+              <input type="text" id="inpFullName" placeholder="Nhập tên hiển thị">
+            </div>
+            <div class="form-group">
+              <label>Số điện thoại</label>
+              <input type="text" id="inpPhone" placeholder="Nhập số điện thoại">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Link Ảnh Đại Diện (URL)</label>
+            <input type="text" id="inpAvatar" placeholder="Dán link ảnh vào đây (Ví dụ: https://imgur.com/...)">
+          </div>
+
+          <div class="form-group">
+            <label>Địa chỉ giao hàng</label>
+            <textarea id="inpAddress" rows="3" placeholder="Số nhà, đường, phường/xã..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-save">LƯU THAY ĐỔI</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:3000/api";
+    const token = localStorage.getItem("token");
+
+    // 1. Nếu chưa login -> Đuổi về trang login
+    if (!token) {
+      window.location.href = "/src/pages/login.html";
+    }
+
+    // 2. Xử lý Avatar trên Navbar (Lấy từ cache để hiện ngay lập tức)
+    const cachedAvatar = localStorage.getItem("userAvatar");
+    if(cachedAvatar) {
+      document.getElementById('navAvatar').src = cachedAvatar;
+    }
+
+    // 3. Nút Đăng xuất
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "/";
+    });
+
+    // 4. Hàm tải dữ liệu Profile
+    async function loadProfile() {
+      try {
+        const res = await fetch(`${API_URL}/users/profile`, {
+          method: "GET",
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": token 
+          }
+        });
+        
+        if (!res.ok) {
+          if (res.status === 401 || res.status === 403) {
+            alert("Phiên đăng nhập hết hạn!");
+            localStorage.clear();
+            window.location.href = "/src/pages/login.html";
+            return;
+          }
+        }
+
+        const user = await res.json();
+
+        // Điền Form
+        document.getElementById('inpUsername').value = user.username;
+        document.getElementById('inpEmail').value = user.email;
+        document.getElementById('inpFullName').value = user.fullName || "";
+        document.getElementById('inpPhone').value = user.phone || "";
+        document.getElementById('inpAddress').value = user.address || "";
+        document.getElementById('inpAvatar').value = user.avatar || "";
+
+        // Điền hiển thị cột trái
+        document.getElementById('nameDisplay').innerText = user.fullName || user.username;
+        document.getElementById('emailDisplay').innerText = user.email;
+        document.getElementById('roleDisplay').innerText = (user.role || "MEMBER").toUpperCase();
+        
+        // Cập nhật Avatar
+        const finalAvatar = user.avatar || "https://i.imgur.com/6VBx3io.png";
+        document.getElementById('avatarDisplay').src = finalAvatar;
+        document.getElementById('navAvatar').src = finalAvatar;
+        localStorage.setItem("userAvatar", finalAvatar); 
+        
+        // Ngày tham gia
+        if (user.createdAt) {
+          const d = new Date(user.createdAt);
+          document.getElementById('dateDisplay').innerText = d.toLocaleDateString('vi-VN');
+        }
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // 5. Preview ảnh Real-time
+    document.getElementById('inpAvatar').addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      if(val) document.getElementById('avatarDisplay').src = val;
+    });
+
+    // 6. Lưu thay đổi
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        fullName: document.getElementById('inpFullName').value,
+        phone: document.getElementById('inpPhone').value,
+        address: document.getElementById('inpAddress').value,
+        avatar: document.getElementById('inpAvatar').value
+      };
+
+      try {
+        const res = await fetch(`${API_URL}/users/profile`, {
+          method: "PUT",
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": token 
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          // Cập nhật cache ngay lập tức
+          if(payload.avatar) localStorage.setItem("userAvatar", payload.avatar);
+          
+          Swal.fire({
+            icon: 'success',
+            title: 'Thành công',
+            text: 'Đã cập nhật hồ sơ!',
+            confirmButtonColor: '#ec4899'
+          }).then(() => loadProfile());
+        } else {
+          Swal.fire("Lỗi", "Không thể cập nhật", "error");
+        }
+      } catch (err) {
+        Swal.fire("Lỗi mạng", "Vui lòng kiểm tra kết nối", "error");
+      }
+    });
+
+    // Chạy khi mở trang
+    loadProfile();
+  </script>
+</body>
+</html>

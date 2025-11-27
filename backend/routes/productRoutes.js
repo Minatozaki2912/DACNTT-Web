@@ -23,7 +23,7 @@ router.get("/categories", categories);
 // Danh sách mặc định
 router.get("/", async (req, res) => {
   try {
-    const items = await Product.find().sort({ createdAt: -1 }).limit(20);
+    const items = await Product.find().sort({ createdAt: -1 }).limit(100);
     res.json(items);
   } catch (err) {
     res.status(500).json({ message: "Lỗi khi tải danh sách sản phẩm" });

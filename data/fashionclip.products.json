@@ -1,0 +1,322 @@
+[{
+  "_id": {
+    "$oid": "6927b246f92004a54ade7cb5"
+  },
+  "name": "Áo Hoodie Oversize Basic",
+  "description": "Chất liệu nỉ bông dày dặn, form rộng thoải mái, phù hợp cả nam và nữ.",
+  "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=500&q=60",
+  "category": "Áo Hoodie",
+  "price": 350000,
+  "originalPrice": 400000,
+  "quantity": 55,
+  "sold": 12,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927b246f92004a54ade7cb6"
+  },
+  "name": "Quần Jeans Ống Rộng Ripped",
+  "description": "Quần jeans phong cách bụi bặm, cắt xẻ gối, hack dáng cực đỉnh.",
+  "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=60",
+  "category": "Quần Jeans",
+  "price": 450000,
+  "originalPrice": 500000,
+  "quantity": 25,
+  "sold": 5,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927b246f92004a54ade7cb7"
+  },
+  "name": "Áo Thun Graphic Streetwear",
+  "description": "Áo thun cotton 100% thoáng mát, in hình graphic độc quyền.",
+  "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=500&q=60",
+  "category": "Áo Thun",
+  "price": 220000,
+  "originalPrice": 250000,
+  "quantity": 0,
+  "sold": 100,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927b246f92004a54ade7cb8"
+  },
+  "name": "Áo Khoác Bomber Gió",
+  "description": "Áo khoác gió 2 lớp, chống nước nhẹ, phù hợp đi phượt hoặc mặc khoác ngoài.",
+  "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=60",
+  "category": "Áo Khoác",
+  "price": 650000,
+  "originalPrice": 750000,
+  "quantity": 10,
+  "sold": 3,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927b246f92004a54ade7cb9"
+  },
+  "name": "Mũ Lưỡi Trai Unisex",
+  "description": "Phụ kiện không thể thiếu, chất vải kaki bền màu.",
+  "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=60",
+  "category": "Phụ Kiện",
+  "price": 150000,
+  "originalPrice": 150000,
+  "quantity": 200,
+  "sold": 45,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed3"
+  },
+  "name": "Áo Hoodie Zip Basic Grey",
+  "description": "Thiết kế dây kéo tiện lợi, màu xám trung tính dễ phối đồ, chất nỉ bông dày dặn.",
+  "image": "https://images.unsplash.com/photo-1620799140408-ed5341cd2431?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Hoodie",
+  "price": 320000,
+  "originalPrice": 450000,
+  "quantity": 100,
+  "sold": 45,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed4"
+  },
+  "name": "Quần Cargo Pants Túi Hộp",
+  "description": "Phong cách đường phố cực chất với thiết kế nhiều túi hộp, vải kaki đứng form.",
+  "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=500&q=80",
+  "category": "Quần",
+  "price": 420000,
+  "originalPrice": 550000,
+  "quantity": 60,
+  "sold": 12,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed5"
+  },
+  "name": "Váy Hoa Nhí Vintage",
+  "description": "Váy liền thân họa tiết hoa nhí nhẹ nhàng, phù hợp đi dạo phố hoặc đi biển.",
+  "image": "https://images.unsplash.com/photo-1612336307429-8a898d10e223?auto=format&fit=crop&w=500&q=80",
+  "category": "Váy",
+  "price": 290000,
+  "originalPrice": 390000,
+  "quantity": 40,
+  "sold": 8,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed6"
+  },
+  "name": "Áo Thun Oversize 'Fearless'",
+  "description": "Áo thun cotton 100% in chữ Fearless sau lưng, form rộng thoải mái.",
+  "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Thun",
+  "price": 180000,
+  "originalPrice": 250000,
+  "quantity": 200,
+  "sold": 89,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed7"
+  },
+  "name": "Áo Khoác Denim Classic",
+  "description": "Áo khoác bò màu xanh cổ điển, không bao giờ lỗi mốt, bền bỉ theo thời gian.",
+  "image": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Khoác",
+  "price": 550000,
+  "originalPrice": 750000,
+  "quantity": 30,
+  "sold": 5,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed8"
+  },
+  "name": "Giày Sneaker Chunky White",
+  "description": "Giày thể thao đế độn phong cách Hàn Quốc, hack chiều cao cực đỉnh.",
+  "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=500&q=80",
+  "category": "Giày Dép",
+  "price": 650000,
+  "originalPrice": 900000,
+  "quantity": 50,
+  "sold": 22,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efed9"
+  },
+  "name": "Mũ Lưỡi Trai NY Đen",
+  "description": "Phụ kiện không thể thiếu, mũ lưỡi trai thêu logo nổi bật, che nắng và tạo điểm nhấn.",
+  "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=80",
+  "category": "Phụ Kiện",
+  "price": 120000,
+  "originalPrice": 180000,
+  "quantity": 150,
+  "sold": 67,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efeda"
+  },
+  "name": "Áo Blazer Hàn Quốc Kem",
+  "description": "Thanh lịch nơi công sở, sành điệu khi dạo phố. Màu kem nhã nhặn.",
+  "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Khoác",
+  "price": 480000,
+  "originalPrice": 600000,
+  "quantity": 45,
+  "sold": 10,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efedb"
+  },
+  "name": "Quần Short Jeans Rách Gấu",
+  "description": "Năng động mùa hè với quần short jeans lưng cao, lai rách cá tính.",
+  "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80",
+  "category": "Quần",
+  "price": 220000,
+  "originalPrice": 300000,
+  "quantity": 80,
+  "sold": 34,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efedc"
+  },
+  "name": "Túi Tote Vải Canvas",
+  "description": "Túi vải bảo vệ môi trường, in hình nghệ thuật, đựng vừa laptop 14 inch.",
+  "image": "https://images.unsplash.com/photo-1597484662317-9bd7c6d9b385?auto=format&fit=crop&w=500&q=80",
+  "category": "Phụ Kiện",
+  "price": 99000,
+  "originalPrice": 150000,
+  "quantity": 300,
+  "sold": 120,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efedd"
+  },
+  "name": "Áo Sweater Len Cổ Lọ",
+  "description": "Ấm áp cho mùa đông, chất len mềm mịn không gây ngứa.",
+  "image": "https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Len",
+  "price": 350000,
+  "originalPrice": 480000,
+  "quantity": 60,
+  "sold": 15,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efede"
+  },
+  "name": "Áo Croptop Tay Dài",
+  "description": "Khoe eo thon với croptop ôm body, phù hợp phối với quần cạp cao.",
+  "image": "https://images.unsplash.com/photo-1554568218-0f1715e72254?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Thun",
+  "price": 150000,
+  "originalPrice": 220000,
+  "quantity": 90,
+  "sold": 55,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efedf"
+  },
+  "name": "Kính Mát Thời Trang Đen",
+  "description": "Kính râm gọng vuông trendy, chống tia UV bảo vệ mắt.",
+  "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=500&q=80",
+  "category": "Phụ Kiện",
+  "price": 190000,
+  "originalPrice": 300000,
+  "quantity": 100,
+  "sold": 25,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efee0"
+  },
+  "name": "Quần Jogger Thun Xám",
+  "description": "Thoải mái vận động, tập gym hoặc mặc nhà đều đẹp. Bo gấu gọn gàng.",
+  "image": "https://images.unsplash.com/photo-1580906960736-27e7776361a9?auto=format&fit=crop&w=500&q=80",
+  "category": "Quần",
+  "price": 280000,
+  "originalPrice": 350000,
+  "quantity": 70,
+  "sold": 18,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efee1"
+  },
+  "name": "Set Đồ Bộ Thể Thao",
+  "description": "Combo áo khoác và quần dài thể thao, chất liệu gió cản nước nhẹ.",
+  "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80",
+  "category": "Set Bộ",
+  "price": 650000,
+  "originalPrice": 850000,
+  "quantity": 25,
+  "sold": 3,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efee2"
+  },
+  "name": "Áo Polo Nam Trắng",
+  "description": "Lịch sự nhưng vẫn trẻ trung, áo polo vải cá sấu co giãn 4 chiều.",
+  "image": "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=500&q=80",
+  "category": "Áo Polo",
+  "price": 250000,
+  "originalPrice": 350000,
+  "quantity": 120,
+  "sold": 40,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efee3"
+  },
+  "name": "Đầm Dự Tiệc Bodycon Đen",
+  "description": "Quyến rũ và sang trọng, chiếc đầm đen ôm sát tôn đường cong cơ thể.",
+  "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80",
+  "category": "Váy",
+  "price": 550000,
+  "originalPrice": 800000,
+  "quantity": 20,
+  "sold": 5,
+  "status": "active"
+},
+{
+  "_id": {
+    "$oid": "6927eaf6948e4c747f4efee4"
+  },
+  "name": "Ba Lô Laptop Chống Nước",
+  "description": "Ba lô đa năng nhiều ngăn, có đệm chống sốc và khả năng kháng nước.",
+  "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80",
+  "category": "Phụ Kiện",
+  "price": 450000,
+  "originalPrice": 650000,
+  "quantity": 55,
+  "sold": 15,
+  "status": "active"
+}]

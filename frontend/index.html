@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html langLibrary="vi">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,37 +13,92 @@
 </head>
 <body>
 
-<nav>
-  <h1 onclick="location.href='/'">Fashion<span style="color:#ec4899">Clip</span></h1>
-  <ul>
-    <li><a href="/">Trang chủ</a></li>
+  <nav>
+    <h1 onclick="location.href='/'">Fashion<span>Clip</span></h1>
     
-    <li><a href="/src/pages/admin/dashboard.html" id="adminLink" style="display:none; color: #ec4899; font-weight: bold;">Quản trị</a></li>
-    
-    <li><a href="/src/pages/search.html">Tìm kiếm</a></li>
-    <li><a href="/src/pages/login.html" id="loginLink">Đăng nhập</a></li>
-    <li><a href="/src/pages/register.html" id="registerLink">Đăng ký</a></li>
-    <li><button id="logoutBtn" style="display:none;">Đăng xuất</button></li>
-  </ul>
-</nav>
+    <ul>
+      <li><a href="/" class="nav-active">Trang chủ</a></li>
+      
+      <li><a href="/src/pages/admin/dashboard.html" id="adminLink" style="display:none; color: #ec4899;">Quản trị</a></li>
+      
+      <li><a href="/src/pages/search.html">Tìm kiếm</a></li>
+      
+      <li><a href="/src/pages/login.html" id="loginLink">Đăng nhập</a></li>
+      <li><a href="/src/pages/register.html" id="registerLink">Đăng ký</a></li>
+      
+      <li><button id="logoutBtn" style="display:none;">Đăng xuất</button></li>
 
+      <li id="profileNavItem" style="display: none;">
+        <a href="/src/pages/profile.html" class="nav-avatar-link">
+          <img id="navAvatar" src="https://i.imgur.com/6VBx3io.png" alt="Profile">
+        </a>
+      </li>
+    </ul>
+  </nav>
   <section class="hero">
     <h2>Thời trang thông minh<br><span>Gợi ý chuẩn Gen Z</span></h2>
     <p>Tải lên hình ảnh hoặc tìm kiếm để khám phá outfit phù hợp nhất với phong cách của bạn ngay hôm nay.</p>
     <div class="btn-group">
       <button class="btn-primary" onclick="scrollToProducts()">Khám phá ngay</button>
-      <button class="btn-secondary" onclick="location.href='/src/pages/search.html'">
-        <i class="ri-search-line"></i> Tìm kiếm
-      </button>
     </div>
   </section>
 
   <div class="container" id="products">
-    <h2 class="section-title">Sản phẩm nổi bật</h2>
-    <div class="grid" id="productGrid"></div>
+    <h2 class="section-title">Khám phá theo danh mục</h2>
+    <div id="homeProductContainer"></div>
   </div>
 
-  <footer>© 2025 FashionClip | Made with by Hoàng Vương</footer>
+  <footer>© 2025 FashionClip | Made by Hoàng Vương @ Huỳnh Quý</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const userAvatar = localStorage.getItem("userAvatar");
+      const role = localStorage.getItem("role");
+      
+      const loginLink = document.getElementById("loginLink");
+      const registerLink = document.getElementById("registerLink");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const profileNavItem = document.getElementById("profileNavItem");
+      const navAvatar = document.getElementById("navAvatar");
+      const adminLink = document.getElementById("adminLink");
+
+      if (token) {
+        // ĐÃ ĐĂNG NHẬP
+        if(loginLink) loginLink.style.display = "none";
+        if(registerLink) registerLink.style.display = "none";
+        if(logoutBtn) logoutBtn.style.display = "block";
+        
+        if(role === 'admin' && adminLink) adminLink.style.display = "block";
+
+        if(profileNavItem) {
+          profileNavItem.style.display = "block";
+          if (userAvatar && userAvatar.trim() !== "") {
+            navAvatar.src = userAvatar;
+          }
+        }
+      } else {
+        // CHƯA ĐĂNG NHẬP
+        if(loginLink) loginLink.style.display = "block";
+        if(registerLink) registerLink.style.display = "block";
+        if(logoutBtn) logoutBtn.style.display = "none";
+        if(profileNavItem) profileNavItem.style.display = "none";
+        if(adminLink) adminLink.style.display = "none";
+      }
+
+      if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.clear();
+          window.location.reload();
+        });
+      }
+    });
+
+    function scrollToProducts() {
+      const el = document.getElementById("products");
+      if(el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
 
   <script type="module" src="/src/js/app.js"></script>
 </body>

@@ -7,51 +7,223 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
-
-  <!-- Giữ style.css chung cho navbar + grid -->
   <link rel="stylesheet" href="/src/css/style.css">
-  <!-- Thêm file riêng cho search – không ảnh hưởng trang chủ -->
-  <link rel="stylesheet" href="/src/css/search.css">
-
+  
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    /* CSS Riêng cho trang Search */
+    .search-hero {
+      text-align: center;
+      padding: 120px 20px 40px; /* Giảm từ 160px xuống 120px */
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .search-hero h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .search-bar-container {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 320px;
+      max-width: 600px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 18px 60px 18px 25px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.5);
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      font-size: 1rem;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+      border-color: #ec4899;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .search-btn:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .upload-label {
+      background: white;
+      padding: 0 25px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.5);
+      height: 58px;
+    }
+
+    .upload-label:hover {
+      transform: translateY(-3px);
+      color: #ec4899;
+      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.15);
+    }
+
+    .upload-label i {
+      font-size: 1.3rem;
+      color: #ec4899;
+    }
+
+    .filters-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 15px 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      display: inline-flex;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    }
+
+    .filter-item {
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 1px solid #e2e8f0;
+      background: white;
+      color: #475569;
+      font-size: 0.9rem;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 140px;
+    }
+
+    .filter-item:focus, .filter-item:hover {
+      border-color: #6366f1;
+      color: #6366f1;
+      box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1);
+    }
+
+    .filter-input {
+      max-width: 140px;
+    }
+
+    .results-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .search-hero h2 { font-size: 2rem; }
+      .search-bar-container { flex-direction: column; }
+      .search-input-wrapper, .upload-label { width: 100%; }
+      .filters-container { flex-direction: column; width: 100%; }
+      .filter-item { width: 100%; max-width: none; }
+    }
+  </style>
 </head>
 <body>
 
   <nav>
-    <h1 onclick="location.href='/'">Fashion<span style="color:#ec4899">Clip</span></h1>
-    <ul>
-      <li><a href="/">Trang chủ</a></li>
-      <li><a href="/src/pages/search.html">Tìm kiếm</a></li>
-      <li><a href="/src/pages/login.html" id="loginLink">Đăng nhập</a></li>
-      <li><a href="/src/pages/register.html" id="registerLink">Đăng ký</a></li>
-      <li><button id="logoutBtn" style="display:none;">Đăng xuất</button></li>
-    </ul>
-  </nav>
+  <h1 onclick="location.href='/'">Fashion<span>Clip</span></h1>
+  
+  <ul>
+    <li><a href="/">Trang chủ</a></li>
+    
+    <li><a href="/src/pages/admin/dashboard.html" id="adminLink" style="display:none; color: #ec4899;">Quản trị</a></li>
+    
+    <li><a href="/src/pages/search.html" class="nav-active">Tìm kiếm</a></li>
+    
+    <li><a href="/src/pages/login.html" id="loginLink">Đăng nhập</a></li>
+    <li><a href="/src/pages/register.html" id="registerLink">Đăng ký</a></li>
+    
+    <li><button id="logoutBtn" style="display:none;">Đăng xuất</button></li>
+
+    <li id="profileNavItem" style="display: none;">
+      <a href="/src/pages/profile.html" class="nav-avatar-link">
+        <img id="navAvatar" src="https://i.imgur.com/6VBx3io.png" alt="Profile">
+      </a>
+    </li>
+  </ul>
+</nav>
 
   <section class="search-hero">
     <h2>Tìm outfit của bạn</h2>
 
-    <!-- Thanh tìm kiếm + upload -->
-    <div class="search-bar">
+    <div class="search-bar-container">
       <div class="search-input-wrapper">
         <input type="text" id="searchInput" class="search-input" placeholder="Nhập tên quần áo, màu sắc, phong cách...">
-        <button class="search-icon-btn" id="searchBtn"><i class="ri-search-line"></i></button>
+        <button id="searchBtn" class="search-btn">
+          <i class="ri-search-2-line"></i>
+        </button>
       </div>
-      <label class="upload-btn">
-        <i class="ri-image-add-line"></i> Tải ảnh lên
+
+      <label class="upload-label">
+        <i class="ri-image-add-line"></i>
+        <span>Tải ảnh lên</span>
         <input type="file" id="imageUpload" accept="image/*" hidden>
       </label>
     </div>
 
-    <!-- Bộ lọc -->
-    <div class="filters">
-      <select id="categorySelect">
+    <div class="filters-container">
+      <select id="categorySelect" class="filter-item">
         <option value="">Tất cả danh mục</option>
-        <!-- Options sẽ được JS fill -->
       </select>
-      <input type="number" id="minPrice" placeholder="Giá thấp nhất" min="0">
-      <input type="number" id="maxPrice" placeholder="Giá cao nhất" min="0">
-      <select id="sortSelect">
+      
+      <input type="number" id="minPrice" class="filter-item filter-input" placeholder="Giá thấp nhất" min="0">
+      <input type="number" id="maxPrice" class="filter-item filter-input" placeholder="Giá cao nhất" min="0">
+      
+      <select id="sortSelect" class="filter-item">
         <option value="relevance">Phù hợp nhất</option>
         <option value="newest">Mới nhất</option>
         <option value="price_asc">Giá tăng dần</option>
@@ -60,12 +232,56 @@
     </div>
   </section>
 
-  <div class="container">
-    <div id="meta" style="text-align:center; margin-bottom:30px; color:#64748b;"></div>
-    <div class="grid" id="grid"></div>
+  <div class="results-container">
+    <div id="meta" style="text-align:center; margin-bottom:30px; color:#64748b; font-style: italic;"></div>
+    
+    <div class="grid" id="productGrid">
+      </div>
   </div>
 
-  <footer>© 2025 FashionClip | Made with 💜 by Hoàng Vương</footer>
+  <footer>© 2025 FashionClip | Made by Hoàng Vương</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const userAvatar = localStorage.getItem("userAvatar");
+      const role = localStorage.getItem("role");
+      
+      const loginLink = document.getElementById("loginLink");
+      const registerLink = document.getElementById("registerLink");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const profileNavItem = document.getElementById("profileNavItem");
+      const navAvatar = document.getElementById("navAvatar");
+      const adminLink = document.getElementById("adminLink");
+
+      if (token) {
+        if(loginLink) loginLink.style.display = "none";
+        if(registerLink) registerLink.style.display = "none";
+        if(logoutBtn) logoutBtn.style.display = "block";
+        if(role === 'admin' && adminLink) adminLink.style.display = "block";
+
+        if(profileNavItem) {
+          profileNavItem.style.display = "block";
+          if (userAvatar && userAvatar.trim() !== "") {
+            navAvatar.src = userAvatar;
+          }
+        }
+      } else {
+        if(loginLink) loginLink.style.display = "block";
+        if(registerLink) registerLink.style.display = "block";
+        if(logoutBtn) logoutBtn.style.display = "none";
+        if(profileNavItem) profileNavItem.style.display = "none";
+        if(adminLink) adminLink.style.display = "none";
+      }
+
+      if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.clear();
+          window.location.reload();
+        });
+      }
+    });
+  </script>
 
   <script type="module" src="/src/js/app.js"></script>
 </body>
